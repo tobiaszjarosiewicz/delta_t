@@ -1,4 +1,4 @@
 # delta_t
 
-This is for measuring delta.
+This is for measuring delta t.
 
