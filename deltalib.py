@@ -41,15 +41,15 @@ def parse_data(data):
             lag = dvalues[1].strip('+?').lstrip('?')
             results['enum'].append(i)
             results['lag'].append(lag)
-            if len(dvalues) > 4:
+            if len(dvalues) > 3:
                 results['extrapolated'].append(1)
             else:
                 results['extrapolated'].append(0)
-            if dvalues[3] == "+":
+            if dvalues[2] == "+":
                 results['wound'].append(-1)
-            elif dvalues[3] == "++":
+            elif dvalues[2] == "++":
                 results['wound'].append(1)
-            elif dvalues[3] == "+/-":
+            elif dvalues[2] == "+/-":
                 results['wound'].append(-3)
 
     # Calculate delta from lag:
