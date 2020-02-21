@@ -39,10 +39,8 @@ def parse_data(data):
         if (len(dvalues) > 2 and
             dvalues[1].strip('-').strip('+').isnumeric() is True):
             lag = dvalues[1].strip('+?').lstrip('?')
-            delta = dvalues[2].strip('+').lstrip('?')
             results['enum'].append(i)
             results['lag'].append(lag)
-            results['delta'].append(delta)
             if len(dvalues) > 4:
                 results['extrapolated'].append(1)
             else:
@@ -53,6 +51,14 @@ def parse_data(data):
                 results['wound'].append(1)
             elif dvalues[3] == "+/-":
                 results['wound'].append(-3)
+
+    # Calculate delta from lag:
+    for i, elem in enumerate(results['lag']):
+        try:
+            delta = int(results['lag'][i+1]) - int(results['lag'][i])
+        except IndexError:
+            delta = 0
+        results['delta'].append(delta)
 
     # Differentiate for measured and extrapolated data:
     plot_lag_true = []
